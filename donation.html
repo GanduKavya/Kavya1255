@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Options</title>
+    <style>
+
+        /* Basic styling for the donation section */
+        #donate {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        h2, h3 {
+            color: #4CAF50;
+        }
+        label, select, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        select, input {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 0.7rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body style="background-image: url('elder_care.jpg')">
+        <section id="donate">
+        <h2>Donation Options</h2>
+        <h3>Monetary Donations</h3>
+<form action="donation1.php" method="post">
+username:<input type="text" name="username" />
+            <label for="amount">Choose an amount:</label>
+            <select id="amount" name="amount" onchange="toggleCustomAmount()">
+                <option value="10">$10</option>   
+                <option value="25">$25</option>
+                <option value="50">$50</option>
+                <option value="custom">Custom Amount</option>
+            </select>
+            <input type="text" id="custom-amount" name="custom-amount" placeholder="Enter custom amount" style="display: none;">
+            <button type="submit" onclick="nextpage()">Donate</button>
+        </form>
+        
+            </section>
+
+    <script>
+function nextpage()
+{
+alert("Donation successfull");
+}
+
+        function toggleCustomAmount() {
+            const amountSelect = document.getElementById('amount');
+            const customAmountField = document.getElementById('custom-amount');
+            
+            // Show custom amount field only when "Custom" option is selected
+            if (amountSelect.value === 'custom') {
+                customAmountField.style.display = 'block';
+                customAmountField.setAttribute('required', 'required');
+            } else {
+                customAmountField.style.display = 'none';
+                customAmountField.removeAttribute('required');
+                customAmountField.value = ''; // Clear any custom input
+            }
+        }
+
+        document.getElementById('donationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const amountSelect = document.getElementById('amount').value;
+            const customAmount = document.getElementById('custom-amount').value;
+            let donationAmount;
+
+            // Determine the donation amount based on selection or custom input
+            if (amountSelect === 'custom' && customAmount) {
+                donationAmount = customAmount;
+            } else {
+                donationAmount = amountSelect;
+            }
+
+                    });
+    </script>
+</body>
+</html>
+
+        
